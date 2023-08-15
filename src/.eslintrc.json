@@ -1,0 +1,41 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react"],
+  "ignorePatterns": ["/testReport/", "/test/"],
+  "rules": {
+    "no-console": 2,
+    "no-extra-semi": 2,
+    "no-unused-vars": 2,
+    "react/prop-types": 0,
+    "semi": [2, "always"],
+    "max-lines": [2, 1500],
+    "no-multi-spaces": [2],
+    "quotes": [2, "single"],
+    "react/react-in-jsx-scope": 0,
+    "no-async-promise-executor": 0,
+    "linebreak-style": [2, "unix"],
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "semi-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ]
+  }
+}

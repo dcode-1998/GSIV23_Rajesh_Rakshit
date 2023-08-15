@@ -1,0 +1,21 @@
+{
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "explorer.compactFolders": false,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 5000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.associations": {
+    "*.json": "json"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}
