@@ -1,0 +1,17 @@
+.movies_list_container {
+  width: 100%;
+  height: calc(100vh - 2rem - 3rem - 10rem);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  overflow: auto;
+
+  /* padding: 1rem;
+  background-color: white;
+  /* margin: 0 auto; */
+}
+
+.search_container {
+  width: 50%;
+}
