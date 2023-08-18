@@ -56,7 +56,7 @@ const MoviesList = props => {
   let clientHeight = target?.clientHeight;
   console.log(clientHeight);
   let scrollHeight = target?.scrollHeight;
-  let scrollTop = document.querySelector('#movielist_container').scrollTop;
+  let scrollTop = target?.scrollTop;
 
   document.getElementById('movielist_container')?.addEventListener('scroll', () => {
     console.log('scrolled');
