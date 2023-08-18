@@ -1,1 +1,7 @@
-import 
+const ErrorHandler = err => {
+  console.log('err:inside ', err);
+  alert(err?.message ? err.message : 'Internal Server Error');
+  return true;
+};
+
+export default ErrorHandler;

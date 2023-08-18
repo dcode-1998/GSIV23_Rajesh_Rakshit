@@ -5,7 +5,7 @@ const MovieCard = props => {
     <div
       className='movie_card_container'
       onClick={() => {
-        props.onClick(props.data);
+        props.onClick(props.data.id);
       }}
     >
       <img

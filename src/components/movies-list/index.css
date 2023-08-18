@@ -1,6 +1,6 @@
 .movies_list_container {
   width: 100%;
-  height: calc(100vh - 2rem - 3rem - 10rem);
+  height: calc(100vh - 2rem - 3rem - 5rem);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

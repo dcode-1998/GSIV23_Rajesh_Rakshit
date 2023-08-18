@@ -1,0 +1,53 @@
+.movie_card_container {
+  height: 18rem;
+  width: 14rem;
+  cursor: pointer;
+  min-height: 4rem;
+  min-height: 3rem;
+  border-radius: 0.5rem;
+  background-color: aqua;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.161);
+  /* margin: 0 auto; */
+}
+
+.movie_card_container:hover {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0.5rem 1rem rgba(56, 17, 172, 0.2);
+}
+
+.movie_poster_container {
+  height: 12rem;
+  /* min-height: 4rem;
+  min-height: 3rem; */
+  width: 100%;
+  background-color: blueviolet;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.movie_description {
+  padding: 0.25rem;
+}
+
+.movie_title_rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie_title {
+  font-weight: 500;
+  width: 8rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-bottom: 0.5rem;
+}
+
+.movie_details {
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
