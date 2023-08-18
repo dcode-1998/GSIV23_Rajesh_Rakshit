@@ -2,9 +2,9 @@ import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovieDetails } from '../../state-management/slices/movieList';
+import { setMovieDetails, setMoviesList } from '../../state-management/slices/movieList';
 import { movieDetails } from '../../state-management/apis/movieDetailsAPI';
-import { movieList } from '../../state-management/apis/movieListingAPI';
+import { movieList, movieListSearch } from '../../state-management/apis/movieListingAPI';
 
 import MovieCard from '../shared/movie-card';
 
@@ -15,6 +15,7 @@ const MoviesList = props => {
   const location = useLocation();
 
   const movieListData = useSelector(state => state.movieBrowser.movieListingData);
+  console.log('listdata', movieListData);
   const initialState = { moviesList: [], page: 1, showSearch: true, searchKey: '' };
   const [state, updateState] = useReducer((prev, next) => {
     let updateState = { ...prev, ...next };
@@ -22,11 +23,25 @@ const MoviesList = props => {
   }, initialState);
 
   useEffect(() => {
-    dispatch(movieList(state.page));
+    let params = {
+      page: state.page,
+      searchKey: state.searchKey
+    };
+    dispatch(movieList(params));
     let moviesList = [...state.moviesList, ...movieListData.results];
     updateState({ moviesList });
     // fetchMovies();
   }, [state.page]);
+
+  useEffect(() => {
+    let params = {
+      page: 1,
+      searchKey: state.searchKey
+    };
+    dispatch(movieListSearch(params));
+    let moviesList = [...movieListData.results];
+    updateState({ moviesList });
+  }, [state.searchKey]);
 
   useEffect(() => {
     if (!location.pathname.includes('movies-list')) {
@@ -34,33 +49,24 @@ const MoviesList = props => {
     }
   }, [location.pathname]);
 
-  const fetchMovies = async () => {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${state.page}`
-    );
-
-    // updateState({ moviesList });
-  };
-
   const searchMovies = searchData => {
     updateState({ searchKey: searchData });
   };
 
   const onClick = data => {
-    console.log('data: ', data);
     dispatch(movieDetails(data));
     navigate('../movie-details', { state: { showDetailsHeader: true } });
   };
 
-  let target = document.querySelector('#movielist_container');
-  let clientHeight = target?.clientHeight;
-  console.log(clientHeight);
-  let scrollHeight = target?.scrollHeight;
-  let scrollTop = target?.scrollTop;
-
   document.getElementById('movielist_container')?.addEventListener('scroll', () => {
-    console.log('scrolled');
-    console.log(clientHeight, scrollHeight, scrollTop);
+    let target = document.querySelector('#movielist_container');
+    let clientHeight = target?.clientHeight;
+    let scrollHeight = target?.scrollHeight;
+    let scrollTop = target?.scrollTop;
+    console.log(clientHeight, scrollTop, scrollHeight);
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      updateState({ page: state.page + 1 });
+    }
   });
   return (
     <div className='layout'>

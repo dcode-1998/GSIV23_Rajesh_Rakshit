@@ -13,7 +13,37 @@ export const movieList = input => async dispatch => {
     }
 
     const response = await axios.get(
-      `${CONSTANTS.MOVIE_API}/${CONSTANTS.API_VERSION}/movie/upcoming?language=en-US&page=${input}`
+      `${CONSTANTS.MOVIE_API}${CONSTANTS.API_VERSION}/movie/upcoming?language=en-US&page=${input.page}`
+    );
+    console.log('response: ', response.data);
+    dispatch(setMoviesList(response.data));
+  } catch (err) {
+    console.log('err: ', err);
+    ErrorHandler(err);
+  }
+};
+
+export const movieListSearch = input => async dispatch => {
+  try {
+    for (let key in input) {
+      if (input[key] === '' || input[key] === undefined || input[key] === null) {
+        delete input[key];
+      }
+    }
+    console.log(
+      `${CONSTANTS.MOVIE_API}${CONSTANTS.API_VERSION}${
+        input.searchKey ? '/search' : ''
+      }/movie?language=en-US${input.searchKey ? `&query=${input.searchKey}` : ''}&page=${
+        input.page
+      }`
+    );
+
+    const response = await axios.get(
+      `${CONSTANTS.MOVIE_API}${CONSTANTS.API_VERSION}${
+        input.searchKey ? '/search' : ''
+      }/movie?language=en-US${input.searchKey ? `&query=${input.searchKey}` : ''}&page=${
+        input.page
+      }`
     );
     console.log('response: ', response.data);
     dispatch(setMoviesList(response.data));

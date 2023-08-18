@@ -17,7 +17,6 @@ export const MovieListingSlice = createSlice({
       };
     },
     setMovieDetails: (state, { payload }) => {
-      console.log('payload:movie details ', payload);
       return {
         ...state,
         movieDetails: payload
