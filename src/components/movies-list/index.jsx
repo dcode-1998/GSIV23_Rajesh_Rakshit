@@ -7,7 +7,7 @@ import { movieList, movieListSearch } from '../../state-management/apis/movieLis
 import MovieCard from '../shared/movie-card';
 
 import './index.css';
-const MoviesList = _ => {
+const MoviesList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
