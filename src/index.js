@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { store, persistor } from './state-management/store';
-import { createBrowserRouter, RouterProvider, Route, Link, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 const MovieDetails = lazy(() => import('./components/movie-description'));
 const MoviesList = lazy(() => import('./components/movies-list'));

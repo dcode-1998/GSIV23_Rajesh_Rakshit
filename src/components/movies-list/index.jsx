@@ -1,21 +1,18 @@
-import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovieDetails, setMoviesList } from '../../state-management/slices/movieList';
 import { movieDetails } from '../../state-management/apis/movieDetailsAPI';
 import { movieList, movieListSearch } from '../../state-management/apis/movieListingAPI';
 
 import MovieCard from '../shared/movie-card';
 
 import './index.css';
-const MoviesList = props => {
+const MoviesList = _ => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
 
   const movieListData = useSelector(state => state.movieBrowser.movieListingData);
-  console.log('listdata', movieListData);
   const initialState = { moviesList: [], page: 1, showSearch: true, searchKey: '' };
   const [state, updateState] = useReducer((prev, next) => {
     let updateState = { ...prev, ...next };
@@ -38,9 +35,13 @@ const MoviesList = props => {
       page: 1,
       searchKey: state.searchKey
     };
-    dispatch(movieListSearch(params));
-    let moviesList = [...movieListData.results];
-    updateState({ moviesList });
+    if (state.searchKey.length > 0) {
+      dispatch(movieListSearch(params));
+      let moviesList = [...movieListData.results];
+      updateState({ moviesList });
+    } else {
+      dispatch(movieList(params));
+    }
   }, [state.searchKey]);
 
   useEffect(() => {
@@ -63,7 +64,6 @@ const MoviesList = props => {
     let clientHeight = target?.clientHeight;
     let scrollHeight = target?.scrollHeight;
     let scrollTop = target?.scrollTop;
-    console.log(clientHeight, scrollTop, scrollHeight);
     if (scrollTop + clientHeight >= scrollHeight - 5) {
       updateState({ page: state.page + 1 });
     }

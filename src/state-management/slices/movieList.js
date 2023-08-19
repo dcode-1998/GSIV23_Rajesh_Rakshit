@@ -10,7 +10,6 @@ export const MovieListingSlice = createSlice({
   initialState,
   reducers: {
     setMoviesList: (state, { payload }) => {
-      console.log('payload:listing ', payload);
       return {
         ...state,
         movieListingData: payload

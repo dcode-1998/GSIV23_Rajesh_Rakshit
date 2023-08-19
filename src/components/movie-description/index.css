@@ -1,5 +1,6 @@
 .home_btn {
   margin-right: 4rem;
+  cursor: pointer;
 }
 
 .movie_details_container {

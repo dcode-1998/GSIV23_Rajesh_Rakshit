@@ -1,22 +1,24 @@
-import { useReducer, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import HomeIcon from '../../resource/icons/home-icon.svg';
 
 import './index.css';
 const MovieDetails = () => {
   const movieDetails = useSelector(state => state.movieBrowser.movieDetails);
-  console.log(movieDetails);
   const location = useLocation();
-
-  const [showMovieDetailsHeader, setShowSearch] = useState(location.state.showDetailsHeader);
+  const navigate = useNavigate();
 
   return (
     <div className='layout'>
       <div className='header'>
-        {showMovieDetailsHeader && <div className='search_container'>Movie Details</div>}
-        <div className='home_btn'>
+        {location.state.showDetailsHeader && <div className='search_container'>Movie Details</div>}
+        <div
+          onClick={() => {
+            navigate('../');
+          }}
+          className='home_btn'
+        >
           <img src={HomeIcon} alt='home-icon' />
         </div>
       </div>
