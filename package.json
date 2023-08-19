@@ -25,6 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://dcode-1998.github.io/movie-browser",
   "eslintConfig": {
     "extends": [
       "react-app",
